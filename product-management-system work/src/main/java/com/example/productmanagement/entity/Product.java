@@ -8,11 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-/**
- * A {@code Product} represents an item that can be sold.  Each product
- * belongs to exactly one category.  Additional attributes such as price and
- * quantity allow advanced querying and stock management.
- */
+
 @Entity
 @Table(name = "products")
 public class Product {
