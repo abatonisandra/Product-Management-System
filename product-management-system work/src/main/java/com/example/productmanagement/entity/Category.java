@@ -10,11 +10,6 @@ import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * A {@code Category} groups products together.  Each category can contain
- * multiple products.  The {@link #products} field is mapped by the
- * {@code category} property on the {@link Product} entity.
- */
 @Entity
 @Table(name = "categories")
 public class Category {
