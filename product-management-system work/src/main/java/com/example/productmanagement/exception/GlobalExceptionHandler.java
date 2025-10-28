@@ -12,18 +12,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Provides centralized exception handling across all controllers.  Each
- * {@link ExceptionHandler} method translates an exception into a
- * structured JSON response with an appropriate HTTP status code.  This
- * promotes clean controller code and uniform error responses.
- */
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    /**
-     * Handles {@link ResourceNotFoundException} by returning a 404 response.
-     */
+    
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex) {
         Map<String, Object> body = new HashMap<>();
@@ -31,10 +24,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
-    /**
-     * Catches all other exceptions and returns a generic 500 response.  In
-     * production you may want to log the exception or hide internal details.
-     */
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAllExceptions(Exception ex) {
         Map<String, Object> body = new HashMap<>();
@@ -42,11 +32,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    /**
-     * Overrides default handling of validation errors.  When a request body
-     * annotated with {@code @Valid} fails validation, this method returns a
-     * map of field errors and a 400 Bad Request status.
-     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                  HttpHeaders headers,
